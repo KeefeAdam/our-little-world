@@ -56,6 +56,10 @@ export default function MessengerApp({ onBack }) {
   const [typedMessage, setTypedMessage] = useState('')
   const messageListRef = useRef(null)
   const activeConversation = conversations.find(chat => chat.id === activeId)
+  const hasMoreMessages = activeConversation
+    ? activeConversation.messageIndex < activeConversation.messagesToSend.length &&
+      activeConversation.replyIndex < activeConversation.replies.length
+    : false
   const pressedKey = chatFlow?.phase === 'me'
     ? getKeyboardKey(chatFlow.message[typedMessage.length])
     : null
@@ -90,7 +94,7 @@ export default function MessengerApp({ onBack }) {
               ...chat,
               preview: chatFlow.message,
               time,
-              messageIndex: (chat.messageIndex + 1) % chat.messagesToSend.length,
+              messageIndex: chat.messageIndex + 1,
               messages: [...chat.messages, { id: Date.now(), text: chatFlow.message, from: 'me', time }],
             }
           : chat))
@@ -105,7 +109,7 @@ export default function MessengerApp({ onBack }) {
             ...chat,
             preview: chatFlow.reply,
             time,
-            replyIndex: (chat.replyIndex + 1) % chat.replies.length,
+            replyIndex: chat.replyIndex + 1,
             messages: [...chat.messages, { id: Date.now(), text: chatFlow.reply, from: 'them', time }],
           }
         : chat))
@@ -116,7 +120,7 @@ export default function MessengerApp({ onBack }) {
   }, [chatFlow, typedMessage])
 
   const startReply = () => {
-    if (chatFlow || !activeConversation) return
+    if (chatFlow || !activeConversation || !hasMoreMessages) return
     setTypedMessage('')
     setChatFlow({
       conversationId: activeConversation.id,
@@ -156,8 +160,8 @@ export default function MessengerApp({ onBack }) {
           </div>}
         </div>
         <div className="message-composer">
-          <button className="message-prompt" onClick={startReply} disabled={Boolean(chatFlow)} aria-label="Tap to start a conversation">
-            <span>{chatFlow?.phase === 'me' ? `${typedMessage ? `: ${typedMessage}` : '...'}` : chatFlow?.phase === 'sending' ? 'Sending...' : chatFlow?.phase === 'them' ? 'They are typing...' : 'Tap here to write a message...'}</span>
+          <button className="message-prompt" onClick={startReply} disabled={Boolean(chatFlow) || !hasMoreMessages} aria-label={!hasMoreMessages ? 'No more messages' : 'Tap to start a conversation'}>
+            <span>{chatFlow?.phase === 'me' ? `${typedMessage ? `: ${typedMessage}` : '...'}` : chatFlow?.phase === 'sending' ? 'Sending...' : chatFlow?.phase === 'them' ? 'They are typing...' : hasMoreMessages ? 'Tap here to write a message...' : 'No more messages'}</span>
             <Send size={16} />
           </button>
           {chatFlow?.phase === 'me' && <div className="phone-keyboard" aria-label="Phone keyboard typing animation">
