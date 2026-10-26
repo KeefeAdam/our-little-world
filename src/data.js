@@ -34,9 +34,23 @@ export const calendarEvents = [
   { date: '2026-11-05', title: 'One month of us', note: 'Our first month anniversary.' },
 ]
 
-export const tracks = [
-  { title: 'Our Song #1', artist: 'Add artist name', src: '', url: 'https://open.spotify.com/' , note: 'Why does this song remind you of Orion?' },
-  { title: 'Our Song #2', artist: 'Add artist name', src: '', url: 'https://www.youtube.com/', note: 'Add the story behind this song.' },
+export const playlists = [
+  {
+    id: 'our-soundtrack',
+    title: 'Our Little Soundtrack',
+    description: 'The songs that tell our story.',
+    tracks: [
+      { title: 'Butterflies', artist: 'Add artist name', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion?' },
+    ],
+  },
+  {
+    id: 'songs-for-us',
+    title: 'Songs That Feel Like Us',
+    description: 'A few songs to keep close.',
+    tracks: [
+      { title: 'Our Song #2', artist: 'Add artist name', src: '', url: 'https://www.youtube.com/', note: 'Add the story behind this song.' },
+    ],
+  },
 ]
 
 export const notes = [
