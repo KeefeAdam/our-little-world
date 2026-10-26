@@ -40,7 +40,7 @@ export const playlists = [
     title: 'Our Little Soundtrack',
     description: 'The songs that tell our story.',
     tracks: [
-      { title: 'Butterflies', artist: 'Add artist name', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion?' },
+      { title: 'Butterflies', artist: 'JVKE (ft. Taehyun and Chaewon)', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion?' },
     ],
   },
   {
@@ -48,7 +48,7 @@ export const playlists = [
     title: 'Songs That Feel Like Us',
     description: 'A few songs to keep close.',
     tracks: [
-      { title: 'Our Song #2', artist: 'Add artist name', src: '', url: 'https://www.youtube.com/', note: 'Add the story behind this song.' },
+      { title: 'Take My Half', artist: 'Choi Beomgyu', src: '/audio/take-my-half.mp3', note: 'Add the story behind this song.' },
     ],
   },
 ]
