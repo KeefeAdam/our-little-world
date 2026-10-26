@@ -30,11 +30,13 @@ export default function GalleryApp({ onBack, onClue }) {
       <button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button>
     </div> : selected ? <div className="app-content">
       <p className="eyebrow">{selected.date}</p>
-      <div className="photo-grid">{selected.photos.map((p, i) => <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
+      <div className="photo-grid">
+        {selected.photos.map((p, i) => 
+        <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
         {p.src && <img src={p.src} alt="" />}
         <span>{p.symbol}</span><small>{p.title}</small>
-      </button>)}</div>
-      {selected.id === 'firsts' && <button className="text-link" onClick={() => { onClue('gallery'); }}>I found a little clue <ChevronRight size={15} /></button>}
+      </button>)}
+      </div>
     </div> : <div className="app-content">
       <div className="section-intro"><h3>Little moments,<br /><i>kept forever.</i></h3><p>Every picture holds a piece of us.</p></div>
       {albums.map((album, i) => <button className="album-row" key={album.id} onClick={() => setAlbumId(album.id)}>

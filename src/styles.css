@@ -92,7 +92,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .key-text small { font-size: 9px; }
 .passcode-hint { text-align: center; margin: 19px 0; color: #9da7b8; font-size: 10px; }
 .home-screen { padding-bottom: 22px; }
-.home-greeting { position: relative; z-index: 1; padding: 28px 25px 17px; }
+.home-greeting { position: relative; z-index: 1; padding: 12px 25px 17px; }
 .home-greeting > span, .eyebrow { color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .2em; }
 .home-greeting h1 { font-family: 'Playfair Display', serif; font-size: 38px; line-height: 1.03; font-weight: 500; margin: 12px 0 8px; letter-spacing: -.04em; }
 .home-greeting h1 i, .section-intro h3 i, .music-hero h3 i, .mystery-content h3 i, .gift-top h2 i { color: var(--gold); font-weight: 500; }
@@ -232,8 +232,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .event-card h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 500; margin: 7px 0; }
 .event-card p { color: #777c85; font-size: 11px; line-height: 1.65; margin: 0; }
 .music-hero { padding: 13px 0 23px; text-align: center; }
-.record { width: 120px; height: 120px; display: grid; place-items: center; margin: 0 auto 20px; border-radius: 50%; color: #e3c17e; background: repeating-radial-gradient(circle, #1b263a 0 4px, #25344c 5px 7px); border: 7px solid #1b263a; box-shadow: 0 9px 20px #1a263426; }
-.record svg { background: #d3ad65; color: #24324a; border-radius: 50%; padding: 12px; width: 48px; height: 48px; }
+.record { width: 60px; height: 60px; display: grid; place-items: center; margin: 0 auto 20px; border-radius: 50%; color: #e3c17e; background: repeating-radial-gradient(circle, #1b263a 0 4px, #25344c 5px 7px); border: 7px solid #1b263a; box-shadow: 0 9px 20px #1a263426; }
+.record svg { background: #d3ad65; color: #24324a; border-radius: 50%; padding: 12px; width: 24px; height: 24px; }
 .music-hero h3 { font-size: 29px; }
 .track-list { border-top: 1px solid #e2ddd2; }
 .track { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid #e2ddd2; flex-wrap: wrap; }

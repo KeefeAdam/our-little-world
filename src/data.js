@@ -18,6 +18,14 @@ export const albums = [
     { title: 'Just us', caption: 'Sometimes the smallest moments become the best memories.', symbol: '☾' },
     { title: 'A favourite memory', caption: 'Your real photos will go here.', symbol: '✧' },
   ]},
+  { id: 'chibis', title: 'Our Chibis', date: 'Our representative chibis', photos: [
+    { title: 'Orion', caption: 'All about Orion', symbol: '☾' },
+    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '✧' },
+  ]},
+  { id: 'favorites', title: 'Our Favorites', date: 'Selected memories', photos: [
+    { title: 'One', caption: 'First favorite', symbol: '☾' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧' },
+  ]},
 ]
 
 export const calendarEvents = [
