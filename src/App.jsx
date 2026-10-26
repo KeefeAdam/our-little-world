@@ -7,6 +7,7 @@ import MysteryApp from './apps/MysteryApp.jsx'
 import NotesApp from './apps/NotesApp.jsx'
 import HomeScreen from './components/HomeScreen.jsx'
 import LockScreen from './components/LockScreen.jsx'
+import MessengerApp from './components/MessengerApp.jsx'
 import PasscodeScreen from './components/PasscodeScreen.jsx'
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
       case 'calendar': return <CalendarApp {...props} />
       case 'music': return <MusicApp {...props} />
       case 'notes': return <NotesApp {...props} />
+      case 'messenger': return <MessengerApp onBack={backHome} />
       case 'mystery': return <MysteryApp {...props} found={found} unlocked={unlocked} onFinalGift={() => setFinalOpen(true)} />
       default: return null
     }

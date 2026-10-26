@@ -5,6 +5,7 @@ export const apps = [
   { id: 'calendar', label: 'Calendar', icon: '31', tone: 'cream' },
   { id: 'music', label: 'Music', icon: '♫', tone: 'blue' },
   { id: 'notes', label: 'Notes', icon: '☷', tone: 'sage' },
+  { id: 'messenger', label: 'Messenger', icon: '◌', tone: 'lavender' },
   { id: 'mystery', label: 'Mystery', icon: '✦', tone: 'gold' },
 ]
 

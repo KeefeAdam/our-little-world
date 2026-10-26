@@ -1,5 +1,5 @@
 import {
-  CalendarDays, Image as ImageIcon, LockKeyhole, Music2, NotebookPen,
+  CalendarDays, Image as ImageIcon, LockKeyhole, MessageCircle, Music2, NotebookPen,
   Sparkles, UnlockKeyhole
 } from 'lucide-react'
 import { apps } from '../data.js'
@@ -14,7 +14,7 @@ export default function HomeScreen({ onOpen, found, unlocked }) {
         const isMystery = app.id === 'mystery'
         return <button className="app-tile" key={app.id} onClick={() => onOpen(app.id)}>
           <span className={`app-icon ${app.tone} ${isMystery && !unlocked ? 'mystery-locked' : ''}`}>
-            {app.id === 'gallery' ? <ImageIcon /> : app.id === 'calendar' ? <CalendarDays /> : app.id === 'music' ? <Music2 /> : app.id === 'notes' ? <NotebookPen /> : isMystery && unlocked ? <UnlockKeyhole /> : <Sparkles />}
+            {app.id === 'gallery' ? <ImageIcon /> : app.id === 'calendar' ? <CalendarDays /> : app.id === 'music' ? <Music2 /> : app.id === 'notes' ? <NotebookPen /> : app.id === 'messenger' ? <MessageCircle /> : isMystery && unlocked ? <UnlockKeyhole /> : <Sparkles />}
             {app.id === 'calendar' && <b>31</b>}
           </span>
           <span className="app-label">{isMystery && !unlocked ? '???' : app.label}</span>
