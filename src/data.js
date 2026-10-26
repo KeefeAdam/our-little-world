@@ -11,8 +11,8 @@ export const apps = [
 
 export const albums = [
   { id: 'firsts', title: 'Our Firsts', date: 'The beginning', photos: [
-    { title: 'A little beginning', caption: 'Replace this with a memory that means something to both of you.', symbol: '✦' },
-    { title: 'The day we chose us', caption: 'A placeholder for a favourite photo.', symbol: '♡' },
+    { title: 'A little beginning', caption: 'Replace this with a memory that means something to both of you.', symbol: '✦', src: '/images/satu.jpg' },
+    { title: 'The day we chose us', caption: 'A placeholder for a favourite photo.', symbol: '♡', src: '/images/dua.jpg' },
   ]},
   { id: 'everyday', title: 'Little Moments', date: 'Everyday magic', photos: [
     { title: 'Just us', caption: 'Sometimes the smallest moments become the best memories.', symbol: '☾' },

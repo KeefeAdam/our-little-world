@@ -22,12 +22,18 @@ export default function GalleryApp({ onBack, onClue }) {
       <video controls playsInline className="actual-video" src="/media/anniversary-preview.mp4" onError={(e) => { e.currentTarget.style.display = 'none' }} />
       <p className="muted center">This is a placeholder until you add your own video file.</p>
     </div> : photo ? <div className="photo-detail">
-      <div className="photo-art large-art"><Sparkles size={36} /><span>{photo.symbol}</span></div>
+      <div className="photo-art large-art">
+        {photo.src ? <img src={photo.src} alt={photo.title} /> : <Sparkles size={36} />}
+        <span>{photo.symbol}</span>
+      </div>
       <h3>{photo.title}</h3><p>{photo.caption}</p>
       <button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button>
     </div> : selected ? <div className="app-content">
       <p className="eyebrow">{selected.date}</p>
-      <div className="photo-grid">{selected.photos.map((p, i) => <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}><span>{p.symbol}</span><small>{p.title}</small></button>)}</div>
+      <div className="photo-grid">{selected.photos.map((p, i) => <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
+        {p.src && <img src={p.src} alt="" />}
+        <span>{p.symbol}</span><small>{p.title}</small>
+      </button>)}</div>
       {selected.id === 'firsts' && <button className="text-link" onClick={() => { onClue('gallery'); }}>I found a little clue <ChevronRight size={15} /></button>}
     </div> : <div className="app-content">
       <div className="section-intro"><h3>Little moments,<br /><i>kept forever.</i></h3><p>Every picture holds a piece of us.</p></div>
