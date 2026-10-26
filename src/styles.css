@@ -156,7 +156,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .message-bubble p { margin: 0; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
 .message-bubble small { display: block; margin-top: 4px; color: #8e8f93; font-size: 8px; text-align: right; }
 .message-own .message-bubble small { color: #c2c8d2; }
-.message-composer { display: flex; align-items: center; gap: 8px; padding: 10px 13px max(12px, env(safe-area-inset-bottom)); border-top: 1px solid #e5e0d6; background: #f4f1e9; }
+.message-composer { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 13px max(12px, env(safe-area-inset-bottom)); border-top: 1px solid #e5e0d6; background: #f4f1e9; }
 .message-prompt { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 11px 14px; border: 1px solid #e4dfd6; border-radius: 22px; background: #fffefa; color: #8b8d93; font: inherit; font-size: 11px; text-align: left; }
 .message-prompt svg { flex: 0 0 auto; color: #735d91; }
 .message-prompt:disabled { cursor: default; }
@@ -166,6 +166,16 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .typing-bubble span:nth-child(2) { animation-delay: .15s; }
 .typing-bubble span:nth-child(3) { animation-delay: .3s; }
 @keyframes typing-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .55; } 30% { transform: translateY(-4px); opacity: 1; } }
+.phone-keyboard { display: grid; gap: 5px; padding: 6px 4px 8px; border-radius: 12px; background: #dfe3ea; }
+.keyboard-suggestions { height: 20px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; color: #666d79; font-size: 9px; text-align: center; }
+.keyboard-suggestions span:nth-child(2) { overflow: hidden; padding: 0 8px; border-left: 1px solid #c4c9d1; border-right: 1px solid #c4c9d1; text-overflow: ellipsis; white-space: nowrap; }
+.keyboard-row { display: flex; justify-content: center; gap: 4px; }
+.keyboard-key { display: grid; place-items: center; height: 27px; min-width: 0; flex: 1; border-radius: 5px; background: #fbfcfe; box-shadow: 0 1px 1px #aeb4bd; color: #303744; font-size: 11px; transition: background .08s, transform .08s; }
+.keyboard-row-2 { padding: 0 12px; }
+.keyboard-key.key-pressed { transform: translateY(1px); background: #b7a5d0; color: #fff; box-shadow: 0 0 0 1px #8f78b0; }
+.keyboard-key.keyboard-special { max-width: 43px; background: #c5cad3; font-size: 8px; }
+.keyboard-key.keyboard-space { flex: 4; color: #747a84; font-size: 8px; }
+.keyboard-key.keyboard-return { max-width: 36px; background: #c5cad3; font-size: 14px; }
 .section-intro { margin: 7px 0 22px; }
 .section-intro h3, .music-hero h3, .mystery-content h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.12; letter-spacing: -.035em; margin: 8px 0; }
 .section-intro p, .music-hero > p:last-child { color: #8a8d94; font-size: 11px; margin: 0; }

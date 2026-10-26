@@ -10,6 +10,8 @@ const initialConversations = [
     initials: 'O',
     preview: 'Can’t wait to see you ♡',
     time: '9:41',
+    messagesToSend: ['What are you doing right now? ♡', 'I was just thinking about you.', 'Tell me about your day ✨'],
+    messageIndex: 0,
     replies: ['Tell me more about it ♡', 'I’m always happy when we get to talk.', 'You make my day better too ✨'],
     replyIndex: 0,
     messages: [
@@ -24,6 +26,8 @@ const initialConversations = [
     initials: 'A',
     preview: 'This little place is so cute!',
     time: 'Yesterday',
+    messagesToSend: ['I made this little place for us ♡', 'What should we add next?'],
+    messageIndex: 0,
     replies: ['I’m glad you like it! ♡', 'We should add more memories soon.'],
     replyIndex: 0,
     messages: [
@@ -32,40 +36,95 @@ const initialConversations = [
   },
 ]
 
+const keyboardRows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
+
+function getKeyboardKey(character) {
+  if (!character) return null
+  if (character === ' ') return 'space'
+  if (/[a-z]/i.test(character)) return character.toLowerCase()
+  if (character === '?') return 'question'
+  if (character === '!') return 'exclamation'
+  if (character === '.') return 'period'
+  if (character === ',') return 'comma'
+  return null
+}
+
 export default function MessengerApp({ onBack }) {
   const [conversations, setConversations] = useState(initialConversations)
   const [activeId, setActiveId] = useState(null)
-  const [typingConversationId, setTypingConversationId] = useState(null)
+  const [chatFlow, setChatFlow] = useState(null)
+  const [typedMessage, setTypedMessage] = useState('')
   const activeConversation = conversations.find(chat => chat.id === activeId)
+  const pressedKey = chatFlow?.phase === 'me'
+    ? getKeyboardKey(chatFlow.message[typedMessage.length])
+    : null
 
   useEffect(() => {
-    if (!typingConversationId) return undefined
+    if (!chatFlow) return undefined
+
+    if (chatFlow.phase === 'me' && typedMessage.length < chatFlow.message.length) {
+      const timer = setTimeout(() => {
+        setTypedMessage(chatFlow.message.slice(0, typedMessage.length + 1))
+      }, 55)
+      return () => clearTimeout(timer)
+    }
+
     const timer = setTimeout(() => {
       const time = new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(new Date())
-      setConversations(current => current.map(chat => {
-        if (chat.id !== typingConversationId) return chat
-        const text = chat.replies[chat.replyIndex]
-        return {
-          ...chat,
-          preview: text,
-          time,
-          replyIndex: (chat.replyIndex + 1) % chat.replies.length,
-          messages: [...chat.messages, { id: Date.now(), text, from: 'them', time }],
-        }
-      }))
-      setTypingConversationId(null)
-    }, 1300)
+      if (chatFlow.phase === 'me') {
+        setChatFlow(current => current?.conversationId === chatFlow.conversationId
+          ? { ...current, phase: 'sending' }
+          : current)
+        return
+      }
+
+      if (chatFlow.phase === 'sending') {
+        setConversations(current => current.map(chat => chat.id === chatFlow.conversationId
+          ? {
+              ...chat,
+              preview: chatFlow.message,
+              time,
+              messageIndex: (chat.messageIndex + 1) % chat.messagesToSend.length,
+              messages: [...chat.messages, { id: Date.now(), text: chatFlow.message, from: 'me', time }],
+            }
+          : chat))
+        setChatFlow(current => current?.conversationId === chatFlow.conversationId
+          ? { ...current, phase: 'them' }
+          : current)
+        return
+      }
+
+      setConversations(current => current.map(chat => chat.id === chatFlow.conversationId
+        ? {
+            ...chat,
+            preview: chatFlow.reply,
+            time,
+            replyIndex: (chat.replyIndex + 1) % chat.replies.length,
+            messages: [...chat.messages, { id: Date.now(), text: chatFlow.reply, from: 'them', time }],
+          }
+        : chat))
+      setChatFlow(null)
+      setTypedMessage('')
+    }, chatFlow.phase === 'them' ? 1300 : 350)
     return () => clearTimeout(timer)
-  }, [typingConversationId])
+  }, [chatFlow, typedMessage])
 
   const startReply = () => {
-    if (!typingConversationId) setTypingConversationId(activeId)
+    if (chatFlow || !activeConversation) return
+    setTypedMessage('')
+    setChatFlow({
+      conversationId: activeConversation.id,
+      phase: 'me',
+      message: activeConversation.messagesToSend[activeConversation.messageIndex],
+      reply: activeConversation.replies[activeConversation.replyIndex],
+    })
   }
 
   const back = () => {
     if (activeId) {
       setActiveId(null)
-      setTypingConversationId(null)
+      setChatFlow(null)
+      setTypedMessage('')
     } else {
       onBack()
     }
@@ -82,16 +141,32 @@ export default function MessengerApp({ onBack }) {
             {message.from === 'them' && <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>}
             <div className="message-bubble"><p>{message.text}</p><small>{message.time}</small></div>
           </div>)}
-          {typingConversationId === activeId && <div className="message-row typing-row" aria-label={`${activeConversation.name} is typing`}>
+          {chatFlow?.conversationId === activeId && ['me', 'sending'].includes(chatFlow.phase) && <div className="message-row message-own" aria-label={chatFlow.phase === 'me' ? 'You are typing' : 'Your message was sent'}>
+            <div className="message-bubble"><p>{chatFlow.phase === 'me' ? 'Typing...' : chatFlow.message}</p></div>
+          </div>}
+          {chatFlow?.conversationId === activeId && chatFlow.phase === 'them' && <div className="message-row typing-row" aria-label={`${activeConversation.name} is typing`}>
             <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>
             <div className="typing-bubble"><span /><span /><span /></div>
           </div>}
         </div>
         <div className="message-composer">
-          <button className="message-prompt" onClick={startReply} disabled={typingConversationId === activeId} aria-label="Tap to get a reply">
-            <span>{typingConversationId === activeId ? 'They are typing...' : 'Tap here to write a message...'}</span>
+          <button className="message-prompt" onClick={startReply} disabled={Boolean(chatFlow)} aria-label="Tap to start a conversation">
+            <span>{chatFlow?.phase === 'me' ? `${typedMessage ? `: ${typedMessage}` : '...'}` : chatFlow?.phase === 'sending' ? 'Sending...' : chatFlow?.phase === 'them' ? 'They are typing...' : 'Tap here to write a message...'}</span>
             <Send size={16} />
           </button>
+          {chatFlow?.phase === 'me' && <div className="phone-keyboard" aria-label="Phone keyboard typing animation">
+            <div className="keyboard-suggestions"><span>♡</span><span>{typedMessage || ' '}</span><span>✨</span></div>
+            {keyboardRows.map((row, rowIndex) => <div className={`keyboard-row keyboard-row-${rowIndex + 1}`} key={row}>
+              {row.split('').map(key => <span className={`keyboard-key ${pressedKey === key ? 'key-pressed' : ''}`} key={key}>{key}</span>)}
+            </div>)}
+            <div className="keyboard-row keyboard-row-bottom">
+              <span className={`keyboard-key keyboard-special ${pressedKey === 'question' ? 'key-pressed' : ''}`}>?123</span>
+              <span className={`keyboard-key ${pressedKey === 'comma' ? 'key-pressed' : ''}`}>,</span>
+              <span className={`keyboard-key keyboard-space ${pressedKey === 'space' ? 'key-pressed' : ''}`}>English (US)</span>
+              <span className={`keyboard-key ${pressedKey === 'period' ? 'key-pressed' : ''}`}>.</span>
+              <span className={`keyboard-key keyboard-return ${pressedKey === 'exclamation' ? 'key-pressed' : ''}`}>↵</span>
+            </div>
+          </div>}
         </div>
       </div>
     </> : <>
