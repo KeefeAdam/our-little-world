@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { MessageCircle, Send } from 'lucide-react'
 import AppHeader from './AppHeader.jsx'
 import StatusBar from './StatusBar.jsx'
@@ -54,10 +54,16 @@ export default function MessengerApp({ onBack }) {
   const [activeId, setActiveId] = useState(null)
   const [chatFlow, setChatFlow] = useState(null)
   const [typedMessage, setTypedMessage] = useState('')
+  const messageListRef = useRef(null)
   const activeConversation = conversations.find(chat => chat.id === activeId)
   const pressedKey = chatFlow?.phase === 'me'
     ? getKeyboardKey(chatFlow.message[typedMessage.length])
     : null
+
+  useLayoutEffect(() => {
+    const messageList = messageListRef.current
+    if (messageList) messageList.scrollTop = messageList.scrollHeight
+  }, [activeId, activeConversation?.messages.length, chatFlow?.phase])
 
   useEffect(() => {
     if (!chatFlow) return undefined
@@ -136,7 +142,7 @@ export default function MessengerApp({ onBack }) {
       <AppHeader title={activeConversation.name} onBack={back} subtitle="Our little chat" />
       <div className="messenger-thread">
         <div className="chat-date">TODAY</div>
-        <div className="message-list">
+        <div className="message-list" ref={messageListRef}>
           {activeConversation.messages.map(message => <div key={message.id} className={`message-row ${message.from === 'me' ? 'message-own' : ''}`}>
             {message.from === 'them' && <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>}
             <div className="message-bubble"><p>{message.text}</p><small>{message.time}</small></div>
