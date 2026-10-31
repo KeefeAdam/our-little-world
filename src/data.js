@@ -10,21 +10,23 @@ export const apps = [
 ]
 
 export const albums = [
-  { id: 'firsts', title: 'Our Firsts', date: 'The beginning', photos: [
-    { title: 'A little beginning', caption: 'Replace this with a memory that means something to both of you.', symbol: '✦', src: '/images/satu.jpg' },
-    { title: 'The day we chose us', caption: 'A placeholder for a favourite photo.', symbol: '♡', src: '/images/dua.jpg' },
+  { id: 'layouts', title: 'Our Layouts', date: 'What we have so far', photos: [
+    { title: "Anna's Layout", caption: 'For her birthday', symbol: '♡', src: '/images/gallery/layout/1.png' },
+    { title: "Anna's Layout", caption: 'For her birthday', symbol: '♡', src: '/images/gallery/layout/2.png' },
+    { title: "Our Cool Layout", caption: 'Finally become a couple', symbol: '♡', src: '/images/gallery/layout/3.png' },
+    { title: "Our Warm Layout", caption: 'Finally become a couple', symbol: '♡', src: '/images/gallery/layout/4.png' },
   ]},
-  { id: 'everyday', title: 'Little Moments', date: 'Everyday magic', photos: [
-    { title: 'Just us', caption: 'Sometimes the smallest moments become the best memories.', symbol: '☾' },
-    { title: 'A favourite memory', caption: 'Your real photos will go here.', symbol: '✧' },
+  { id: 'terryanna', title: "Terryanna's House", date: 'Edited photos for Terry and Anna', photos: [
+    { title: 'From Terry', caption: 'To cheer Anna up!', symbol: '♡', src: '/images/gallery/terryanna/1.png' },
+    { title: 'Green Couple', caption: 'Terry and Anna together', symbol: '✧', src: '/images/gallery/terryanna/2.png' },
   ]},
   { id: 'chibis', title: 'Our Chibis', date: 'Our representative chibis', photos: [
-    { title: 'Orion', caption: 'All about Orion', symbol: '☾' },
-    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '✧' },
+    { title: 'Orion', caption: 'All about Orion', symbol: '☾', src: '/images/gallery/chibi/1.png' },
+    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '✧', src: '/images/gallery/chibi/2.png' },
   ]},
   { id: 'favorites', title: 'Our Favorites', date: 'Selected memories', photos: [
-    { title: 'One', caption: 'First favorite', symbol: '☾' },
-    { title: 'Two', caption: 'Second favorite', symbol: '✧' },
+    { title: 'One', caption: 'First favorite', symbol: '☾', src: '/images/gallery/favorites/1.png' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
   ]},
 ]
 

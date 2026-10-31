@@ -27,15 +27,21 @@ export default function GalleryApp({ onBack, onClue }) {
         <span>{photo.symbol}</span>
       </div>
       <h3>{photo.title}</h3><p>{photo.caption}</p>
-      <button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button>
+      {/*<button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button> */}
     </div> : selected ? <div className="app-content">
       <p className="eyebrow">{selected.date}</p>
-      <div className="photo-grid">
+      {/* <div className="photo-grid">
         {selected.photos.map((p, i) => 
         <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
         {p.src && <img src={p.src} alt="" />}
         <span>{p.symbol}</span><small>{p.title}</small>
-      </button>)}
+      </button>)} 
+      </div> */}
+      <div className="photo-grid">
+        {selected.photos.map((p, i) => 
+        <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
+        {p.src && <img src={p.src} alt="" />}
+      </button>)} 
       </div>
     </div> : <div className="app-content">
       <div className="section-intro"><h3>Little moments,<br /><i>kept forever.</i></h3><p>Every picture holds a piece of us.</p></div>
