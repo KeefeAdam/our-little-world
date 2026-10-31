@@ -212,6 +212,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .large-art { height: 290px; border-radius: 18px; display: grid; place-items: center; position: relative; overflow: hidden; color: #92724c; background: linear-gradient(145deg, #d9c7b4, #b9c7c7 54%, #778ca2); }
 .large-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .large-art > span { position: absolute; right: 24px; top: 22px; font-size: 24px; }
+.photo-nav { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: rgba(36, 51, 76, .72); transform: translateY(-50%); }
+.photo-nav:disabled { opacity: .3; cursor: default; }
+.photo-nav-left { left: 12px; }
+.photo-nav-right { right: 12px; }
 .photo-detail h3 { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 500; margin: 20px 0 8px; }
 .photo-detail p { color: #777d86; font-size: 12px; line-height: 1.7; }
 .secondary-button, .primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 12px; padding: 12px 16px; background: #24334c; color: #f6f0e4; font-size: 11px; }
@@ -301,7 +305,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
   .lock-time { font-size: clamp(78px, 21vw, 105px); }
   .notification { margin-top: clamp(32px, 7vh, 65px); }
   .lock-bottom { bottom: max(28px, calc(env(safe-area-inset-bottom) + 18px)); }
-  .home-greeting { padding-top: clamp(28px, 7vh, 54px); }
+  /* .home-greeting { padding-top: clamp(28px, 7vh, 54px); } */
   .home-greeting h1 { font-size: clamp(38px, 10vw, 48px); }
   .app-grid { padding-top: clamp(25px, 5vh, 44px); gap: clamp(20px, 4vh, 32px) 10px; }
   .app-icon { width: 61px; height: 61px; border-radius: 18px; }
@@ -316,7 +320,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
   .lock-time { font-size: 68px; }
   .lock-message { margin-top: 16px; }
   .notification { margin-top: 20px; }
-  .home-greeting { padding-top: 12px; }
+  /* .home-greeting { padding-top: 12px; } */
   .home-greeting h1 { font-size: 31px; }
   .app-grid { gap: 12px 8px; padding-top: 12px; }
   .progress-card { margin-top: 0; }

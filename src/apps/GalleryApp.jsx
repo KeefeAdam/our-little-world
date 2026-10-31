@@ -1,19 +1,20 @@
 import { useState } from 'react'
-import { ChevronRight, Heart, Play, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Heart, Play, Sparkles } from 'lucide-react'
 import { albums } from '../data.js'
 import AppHeader from '../components/AppHeader.jsx'
 import StatusBar from '../components/StatusBar.jsx'
 
 export default function GalleryApp({ onBack, onClue }) {
   const [albumId, setAlbumId] = useState(null)
-  const [photo, setPhoto] = useState(null)
+  const [photoIndex, setPhotoIndex] = useState(null)
   const [showClip, setShowClip] = useState(false)
   const selected = albums.find(a => a.id === albumId)
+  const photo = selected && photoIndex !== null ? selected.photos[photoIndex] : null
   return <div className="app-screen screen">
     <StatusBar dark />
     <AppHeader title={photo ? 'Memory' : selected ? selected.title : 'Gallery'} onBack={() => {
       if (showClip) setShowClip(false)
-      else if (photo) setPhoto(null)
+      else if (photo) setPhotoIndex(null)
       else if (selected) setAlbumId(null)
       else onBack()
     }} subtitle="Our memories" />
@@ -25,6 +26,22 @@ export default function GalleryApp({ onBack, onClue }) {
       <div className="photo-art large-art">
         {photo.src ? <img src={photo.src} alt={photo.title} /> : <Sparkles size={36} />}
         <span>{photo.symbol}</span>
+        <button
+          className="photo-nav photo-nav-left"
+          onClick={() => setPhotoIndex(photoIndex - 1)}
+          disabled={photoIndex === 0}
+          aria-label="Previous photo"
+        >
+          <ChevronLeft size={22} />
+        </button>
+        <button
+          className="photo-nav photo-nav-right"
+          onClick={() => setPhotoIndex(photoIndex + 1)}
+          disabled={photoIndex === selected.photos.length - 1}
+          aria-label="Next photo"
+        >
+          <ChevronRight size={22} />
+        </button>
       </div>
       <h3>{photo.title}</h3><p>{photo.caption}</p>
       {/*<button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button> */}
@@ -39,7 +56,7 @@ export default function GalleryApp({ onBack, onClue }) {
       </div> */}
       <div className="photo-grid">
         {selected.photos.map((p, i) => 
-        <button key={p.title} className={`photo-card art-${i}`} onClick={() => setPhoto(p)}>
+        <button key={`${p.title}-${i}`} className={`photo-card art-${i}`} onClick={() => setPhotoIndex(i)}>
         {p.src && <img src={p.src} alt="" />}
       </button>)} 
       </div>
