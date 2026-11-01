@@ -196,6 +196,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .matching-card > span { flex: 1; line-height: 1.35; }
 .matching-card > i { display: grid; place-items: center; flex: 0 0 auto; color: #b38a48; font-style: normal; }
 .matching-card.connected { border-color: #bda06a; color: #8a6935; background: #fbf4e5; }
+.matching-card.selected { border-color: #b38a48; color: #8a6935; background: #f5ead0; box-shadow: 0 0 0 2px #b38a4840; }
 .matching-card > .matching-dot { display: grid; place-items: center; flex: 0 0 12px; width: 12px; height: 12px; box-sizing: border-box; border: 1px solid #b38a48; border-radius: 50%; background: #fffaf0; }
 .matching-message { display: flex; align-items: center; justify-content: center; gap: 5px; margin: 5px 0 0; font-size: 10px; }
 .matching-message.is-correct { color: #8a6935; }
