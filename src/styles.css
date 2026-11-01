@@ -163,7 +163,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .maze-stats .maze-warning { color: #b94b4b; }
 .maze-stats > span:last-child { color: #8b8e94; font-size: 9px; letter-spacing: 0; }
 .maze-stats .maze-won { color: #b38a48; font-weight: 700; }
-.maze-board { width: 100%; height: 286px; overflow: hidden; border-radius: 18px; box-shadow: 0 10px 24px rgba(30, 43, 64, .13); }
+.maze-board { width: 100%; height: 200px; overflow: hidden; border-radius: 18px; box-shadow: 0 10px 24px rgba(30, 43, 64, .13); }
 .maze-board canvas { display: block; width: 100%; height: 100%; }
 .maze-success { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; padding: 10px 12px; border: 1px solid #e4d4b7; border-radius: 12px; color: #8a6935; background: #fbf4e5; font-family: 'Playfair Display', serif; font-size: 11px; }
 .maze-success svg { flex: 0 0 auto; color: #b38a48; }
@@ -173,7 +173,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .maze-failure { color: #944b4b; border-color: #e8caca; background: #fff1f1; }
 .maze-failure svg { flex: 0 0 auto; color: #b94b4b; }
 .maze-controls { display: grid; justify-items: center; gap: 4px; margin-top: 17px; }
-.maze-controls > button, .maze-controls > div button { display: grid; place-items: center; width: 36px; height: 30px; border: 1px solid #dcd3c4; border-radius: 9px; color: #53647f; background: #fbf9f4; box-shadow: 0 2px 5px rgba(40, 48, 62, .06); }
+.maze-controls > button, .maze-controls > div button { display: grid; place-items: center; width: 60px; height: 52px; border: 1px solid #dcd3c4; border-radius: 9px; color: #53647f; background: #fbf9f4; box-shadow: 0 2px 5px rgba(40, 48, 62, .06); }
 .maze-controls > div { display: flex; gap: 4px; }
 .maze-hint { margin: 13px 0 0; color: #a0a0a3; font-size: 9px; text-align: center; }
 .falling-board { position: relative; width: 100%; height: 286px; overflow: hidden; border-radius: 18px; background: linear-gradient(180deg, #253553, #516987); box-shadow: 0 10px 24px rgba(30, 43, 64, .13); }
