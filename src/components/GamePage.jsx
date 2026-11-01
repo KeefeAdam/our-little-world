@@ -183,11 +183,12 @@ export default function GamePage({ onBack, onClue }) {
     <StatusBar />
     <header className="maze-header"><button className="back-button" onClick={onBack}><ArrowLeft size={15} /> Back</button><div><h2>Little Maze</h2><small>Find the golden key</small></div><button className="maze-reset" onClick={reset} aria-label="Reset maze"><RotateCcw size={15} /></button></header>
     <div className="maze-content">
+      <p className="maze-hint">Find the key before the {TIME_LIMIT}-second timer or {STEP_LIMIT}-step limit runs out.</p>
       <div className="maze-stats"><span>TIME <b className={timeLeft <= 10 ? 'maze-warning' : ''}>{timeLeft}s</b></span><span>STEPS <b>{moves}/{STEP_LIMIT}</b></span></div>
       <div className="maze-board" ref={mazeRef} aria-label="PixiJS maze game" />
       {(won || lost) && <div className={`maze-result ${won ? 'maze-success' : 'maze-failure'}`}><Trophy size={18} /><span>{won ? 'You found the first key. One little lock is open.' : 'You lost your way. Start again from the entrance.'}</span><button onClick={reset}>{won ? 'Play again' : 'Start again'}</button></div>}
       <div className="maze-controls" aria-label="Maze controls"><button onClick={() => move('ArrowUp')} aria-label="Move up"><ChevronUp size={19} /></button><div><button onClick={() => move('ArrowLeft')} aria-label="Move left"><ChevronLeft size={19} /></button><button onClick={() => move('ArrowDown')} aria-label="Move down"><ChevronDown size={19} /></button><button onClick={() => move('ArrowRight')} aria-label="Move right"><ChevronRight size={19} /></button></div></div>
-      <p className="maze-hint">Find the key before the {TIME_LIMIT}-second timer or {STEP_LIMIT}-step limit runs out.</p>
+      
     </div>
   </div>
 }

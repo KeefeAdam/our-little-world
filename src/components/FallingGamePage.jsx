@@ -121,6 +121,7 @@ export default function FallingGamePage({ onBack, onClue }) {
     <StatusBar />
     <header className="maze-header"><button className="back-button" onClick={onBack}><ArrowLeft size={15} /> Back</button><div><h2>Catch the Little Things</h2><small>Move left and right</small></div><button className="maze-reset" onClick={reset} aria-label="Reset game"><RotateCcw size={15} /></button></header>
     <div className="maze-content falling-content">
+      <p className="maze-hint">Catch {TARGET_SCORE} falling stars before time runs out. You can miss {MAX_MISSED}.</p>
       <div className="maze-stats">
         <span>TIME <b className={timeLeft <= 10 ? 'maze-warning' : ''}>{timeLeft}s</b></span>
         <span>MISSED <b>{missed}/{MAX_MISSED}</b></span>
@@ -132,7 +133,7 @@ export default function FallingGamePage({ onBack, onClue }) {
       </div>
       {result && <div className={`maze-result ${result === 'won' ? 'maze-success' : 'maze-failure'}`}><Trophy size={18} /><span>{result === 'won' ? 'You caught enough little things. The second key is yours.' : 'Some little things slipped away. Try again.'}</span><button onClick={reset}>{result === 'won' ? 'Play again' : 'Start again'}</button></div>}
       <div className="falling-controls"><button onClick={() => move(-1)} aria-label="Move left"><ChevronLeft size={21} /></button><span>Move the basket with ← →</span><button onClick={() => move(1)} aria-label="Move right"><ChevronRight size={21} /></button></div>
-      <p className="maze-hint">Catch {TARGET_SCORE} falling stars before time runs out. You can miss {MAX_MISSED}.</p>
+      
     </div>
   </div>
 }

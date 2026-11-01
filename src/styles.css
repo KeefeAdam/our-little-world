@@ -157,7 +157,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .maze-header small { display: block; margin-top: 3px; color: #8b8e94; font-size: 9px; }
 .maze-header .back-button { justify-self: start; }
 .maze-reset { justify-self: end; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid #ddd5c5; border-radius: 50%; color: #8a754f; background: #fbf9f4; }
-.maze-content { padding: 16px 18px 26px; }
+.maze-content { min-height: calc(100% - 108px); display: flex; flex-direction: column; padding: 16px 18px 26px; }
 .maze-stats { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 10px; color: #9c7b44; font-size: 9px; letter-spacing: .12em; }
 .maze-stats b { margin-left: 4px; color: #27344a; font-size: 12px; letter-spacing: 0; }
 .maze-stats .maze-warning { color: #b94b4b; }
@@ -172,19 +172,19 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .maze-result button { border: 0; border-radius: 8px; padding: 7px 9px; color: #fffaf0; background: #b38a48; font-size: 9px; white-space: nowrap; }
 .maze-failure { color: #944b4b; border-color: #e8caca; background: #fff1f1; }
 .maze-failure svg { flex: 0 0 auto; color: #b94b4b; }
-.maze-controls { display: grid; justify-items: center; gap: 4px; margin-top: 17px; }
+.maze-controls { display: grid; justify-items: center; gap: 4px; margin-top: auto; padding-top: 17px; }
 .maze-controls > button, .maze-controls > div button { display: grid; place-items: center; width: 60px; height: 52px; border: 1px solid #dcd3c4; border-radius: 9px; color: #53647f; background: #fbf9f4; box-shadow: 0 2px 5px rgba(40, 48, 62, .06); }
 .maze-controls > div { display: flex; gap: 4px; }
-.maze-hint { margin: 13px 0 0; color: #a0a0a3; font-size: 9px; text-align: center; }
+.maze-hint { margin: 13px 0 13px; color: #a0a0a3; font-size: 9px; text-align: center; }
 .falling-board { position: relative; width: 100%; height: 286px; overflow: hidden; border-radius: 18px; background: linear-gradient(180deg, #253553, #516987); box-shadow: 0 10px 24px rgba(30, 43, 64, .13); }
 .falling-board::before { content: '✦  ·  ✧  ·  ✦  ·  ✧'; position: absolute; top: 20px; left: 0; width: 100%; color: #e7d9bb66; font-size: 13px; letter-spacing: 18px; text-align: center; }
 .falling-item { position: absolute; z-index: 1; display: grid; place-items: center; width: 24px; height: 24px; transform: translate(-50%, -50%); color: #f7dfa5; font-size: 21px; text-shadow: 0 0 10px #f7dfa5; }
 .catcher { position: absolute; z-index: 2; bottom: 13px; width: 47px; height: 28px; transform: translateX(-50%); border: 2px solid #f4dfaa; border-radius: 7px 7px 16px 16px; color: #fff8df; background: #b38a48; box-shadow: 0 4px 10px #17243b66; font-size: 21px; line-height: 23px; text-align: center; transition: left .08s linear; }
-.falling-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 17px; color: #8b8e94; font-size: 9px; }
+.falling-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: auto; padding-top: 17px; color: #8b8e94; font-size: 9px; }
 .falling-controls button { display: grid; place-items: center; width: 60px; height: 52px; border: 1px solid #dcd3c4; border-radius: 10px; color: #53647f; background: #fbf9f4; }
 .matching-intro { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 12px; color: #8b8e94; font-size: 9px; }
 .matching-intro b { color: #b38a48; font-size: 11px; }
-.matching-board { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 29px; min-height: 310px; padding: 8px 0; }
+.matching-board { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 29px; min-height: 310px; padding: 8px 0; touch-action: none; }
 .matching-lines { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .matching-lines line { stroke: #b38a48; stroke-width: 2; stroke-linecap: round; }
 .matching-lines .matching-drag-line { stroke: #cdb170; stroke-dasharray: 4 4; }

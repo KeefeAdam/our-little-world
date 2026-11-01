@@ -48,6 +48,7 @@ export default function MatchingGamePage({ onBack, onClue }) {
 
   const startDrag = (event, id) => {
     if (complete || timedOut || failed || connections.some(connection => connection.questionId === id)) return
+    event.preventDefault()
     const point = pointFor(questionRefs.current[id], 'question')
     setDrag({ id, start: point })
     setCursor(point)
@@ -62,6 +63,7 @@ export default function MatchingGamePage({ onBack, onClue }) {
 
   const finishDrag = (event, answerId) => {
     if (!drag) return
+    event.preventDefault()
     const isCorrect = drag.id === answerId
     if (isCorrect) {
       setConnections(current => [...current, { questionId: drag.id, answerId }])
