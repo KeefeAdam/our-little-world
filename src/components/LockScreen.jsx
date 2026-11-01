@@ -4,7 +4,7 @@ import StatusBar from './StatusBar.jsx'
 
 const todayLabel = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date())
 
-export default function LockScreen({ onUnlock }) {
+export default function LockScreen({ onUnlock, onNotification }) {
   const [now, setNow] = useState(new Date())
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 30000)
@@ -16,7 +16,7 @@ export default function LockScreen({ onUnlock }) {
     <div className="lock-date">{todayLabel}</div>
     <div className="lock-time">{time}</div>
     <div className="lock-message"><span className="tiny-star">✦</span><br />a little place for us.</div>
-    <button className="notification" onClick={onUnlock}>
+    <button className="notification" onClick={onNotification}>
       <span className="notification-icon"><Heart size={18} fill="currentColor" /></span>
       <span><b>Aleyna</b><small>I made something for us. ♡</small></span>
       <em>now</em>

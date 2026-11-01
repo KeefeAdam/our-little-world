@@ -3,7 +3,7 @@ import { ChevronLeft, LockKeyhole, X } from 'lucide-react'
 import { DEMO_PASSCODE } from '../data.js'
 import StatusBar from './StatusBar.jsx'
 
-export default function PasscodeScreen({ onSuccess, onBack }) {
+export default function PasscodeScreen({ onSuccess, onBack, title = 'Enter Passcode', subtitle = 'Only we know this little place.' }) {
   const [digits, setDigits] = useState('')
   const [error, setError] = useState(false)
   const enter = (digit) => {
@@ -22,7 +22,7 @@ export default function PasscodeScreen({ onSuccess, onBack }) {
   return <div className="passcode-screen screen">
     <StatusBar />
     <button className="top-back" onClick={onBack}><ChevronLeft size={20} /> Back</button>
-    <div className="passcode-heading"><LockKeyhole size={24} /><h2>Enter Passcode</h2><p>Only we know this little place.</p></div>
+    <div className="passcode-heading"><LockKeyhole size={24} /><h2>{title}</h2><p>{subtitle}</p></div>
     <div className={`passcode-dots ${error ? 'shake' : ''}`} aria-label={`${digits.length} of 4 digits entered`}>
       {Array.from({ length: 4 }, (_, i) => <span key={i} className={i < digits.length ? 'filled' : ''} />)}
     </div>

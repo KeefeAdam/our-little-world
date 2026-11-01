@@ -12,6 +12,9 @@ import LockScreen from './components/LockScreen.jsx'
 import MessengerApp from './components/MessengerApp.jsx'
 import PasscodeScreen from './components/PasscodeScreen.jsx'
 import NotificationPage from './components/NotificationPage.jsx'
+import GamePage from './components/GamePage.jsx'
+import FallingGamePage from './components/FallingGamePage.jsx'
+import MatchingGamePage from './components/MatchingGamePage.jsx'
 
 const audioTracks = playlists.flatMap(playlist =>
   playlist.tracks
@@ -25,6 +28,7 @@ const audioTracks = playlists.flatMap(playlist =>
 export default function App() {
   const [stage, setStage] = useState('lock')
   const [activeApp, setActiveApp] = useState(null)
+  const [openNotificationAfterUnlock, setOpenNotificationAfterUnlock] = useState(false)
   const [currentTrackId, setCurrentTrackId] = useState(null)
   const [musicFocusTrackId, setMusicFocusTrackId] = useState(null)
   const [musicFocusRequest, setMusicFocusRequest] = useState(0)
@@ -35,7 +39,9 @@ export default function App() {
     try { return JSON.parse(localStorage.getItem('owl-found-clues') || '[]') } catch { return [] }
   })
   const [finalOpen, setFinalOpen] = useState(false)
-  const unlocked = found.length >= 3
+  const gameKeys = ['maze', 'memory', 'heart']
+  const foundGameKeys = found.filter(id => gameKeys.includes(id))
+  const unlocked = gameKeys.every(id => found.includes(id))
   useEffect(() => { localStorage.setItem('owl-found-clues', JSON.stringify(found)) }, [found])
   const currentTrack = audioTracks.find(track => track.id === currentTrackId) || null
   useEffect(() => {
@@ -75,18 +81,29 @@ export default function App() {
     setMusicFocusRequest(request => request + 1)
   }, [currentTrackId])
   const addClue = (id) => setFound(prev => prev.includes(id) ? prev : [...prev, id])
-  const openApp = (id) => { setActiveApp(id); setFinalOpen(false) }
+  const openApp = (id) => {
+    if (id === 'mystery-gift') {
+      setActiveApp('mystery')
+      setFinalOpen(true)
+      return
+    }
+    setActiveApp(id)
+    setFinalOpen(false)
+  }
   const backHome = () => { setActiveApp(null); setFinalOpen(false) }
   const appNode = useMemo(() => {
     const props = { onBack: backHome, onClue: addClue }
-    if (finalOpen && unlocked) return <FinalGift onBack={() => setFinalOpen(false)} />
+    if (finalOpen) return <FinalGift onBack={backHome} />
     switch (activeApp) {
       case 'gallery': return <GalleryApp {...props} onFullVideo={() => setFinalOpen(true)} />
       case 'calendar': return <CalendarApp {...props} />
       case 'music': return <MusicApp {...props} currentTrackId={currentTrackId} focusTrackId={musicFocusTrackId} focusRequest={musicFocusRequest} isPlaying={isPlaying} onToggleTrack={toggleTrack} />
       case 'notes': return <NotesApp {...props} />
       case 'messenger': return <MessengerApp onBack={backHome} />
-      case 'notification': return <NotificationPage onBack={backHome} />
+      case 'notification': return <NotificationPage onBack={backHome} onOpenGame={id => openApp(`game-${id}`)} found={found} />
+      case 'game-maze': return <GamePage onBack={() => openApp('notification')} onClue={addClue} />
+      case 'game-memory': return <FallingGamePage onBack={() => openApp('notification')} onClue={addClue} />
+      case 'game-heart': return <MatchingGamePage onBack={() => openApp('notification')} onClue={addClue} />
       case 'mystery': return <MysteryApp {...props} found={found} unlocked={unlocked} onFinalGift={() => setFinalOpen(true)} />
       default: return null
     }
@@ -98,9 +115,9 @@ export default function App() {
       <div className="phone-frame">
         <div className={`dynamic-island ${currentTrack ? 'dynamic-island-hidden' : ''}`} />
         <div className="phone-viewport">
-          {stage === 'lock' && <LockScreen onUnlock={() => setStage('passcode')} />}
-          {stage === 'passcode' && <PasscodeScreen onBack={() => setStage('lock')} onSuccess={() => setStage('home')} />}
-          {stage === 'home' && !activeApp && <HomeScreen onOpen={openApp} onOpenNotification={() => openApp('notification')} found={found} unlocked={unlocked} />}
+          {stage === 'lock' && <LockScreen onUnlock={() => { setOpenNotificationAfterUnlock(false); setStage('passcode') }} onNotification={() => { setOpenNotificationAfterUnlock(true); setStage('passcode') }} />}
+          {stage === 'passcode' && <PasscodeScreen onBack={() => { setOpenNotificationAfterUnlock(false); setStage('lock') }} onSuccess={() => { setStage('home'); setActiveApp(openNotificationAfterUnlock ? 'notification' : null); setOpenNotificationAfterUnlock(false) }} />}
+          {stage === 'home' && !activeApp && <HomeScreen onOpen={openApp} onOpenNotification={() => openApp('notification')} found={foundGameKeys} unlocked={unlocked} />}
           {stage === 'home' && activeApp && appNode}
           {currentTrack && <div className="music-player">
             <button className="music-player-title" onClick={openMusicTrack} title={`Open ${currentTrack.title} in Music`} aria-label={`Open ${currentTrack.title} in Music`}>{currentTrack.title}</button>

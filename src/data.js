@@ -1,4 +1,5 @@
 export const DEMO_PASSCODE = '1902' // Temporary demo code; replace with a meaningful number.
+export const MYSTERY_PASSWORD = 'Aleyna99'
 
 export const apps = [
   { id: 'gallery', label: 'Gallery', icon: '▧', tone: 'rose' },
