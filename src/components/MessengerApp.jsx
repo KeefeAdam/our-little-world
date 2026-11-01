@@ -2,39 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { MessageCircle, Send } from 'lucide-react'
 import AppHeader from './AppHeader.jsx'
 import StatusBar from './StatusBar.jsx'
-
-const initialConversations = [
-  {
-    id: 'orion',
-    name: 'Orion',
-    initials: 'O',
-    preview: 'Can’t wait to see you ♡',
-    time: '9:41',
-    messagesToSend: ['What are you doing right now? ♡', 'I was just thinking about you.', 'Tell me about your day ✨'],
-    messageIndex: 0,
-    replies: ['Tell me more about it ♡', 'I’m always happy when we get to talk.', 'You make my day better too ✨'],
-    replyIndex: 0,
-    messages: [
-      { id: 1, text: 'Hey, how was your day?', from: 'them', time: '9:38' },
-      { id: 2, text: 'It got better when you texted ♡', from: 'me', time: '9:39' },
-      { id: 3, text: 'Can’t wait to see you ♡', from: 'them', time: '9:41' },
-    ],
-  },
-  {
-    id: 'aleyna',
-    name: 'Aleyna',
-    initials: 'A',
-    preview: 'This little place is so cute!',
-    time: 'Yesterday',
-    messagesToSend: ['I made this little place for us ♡', 'What should we add next?'],
-    messageIndex: 0,
-    replies: ['I’m glad you like it! ♡', 'We should add more memories soon.'],
-    replyIndex: 0,
-    messages: [
-      { id: 1, text: 'This little place is so cute!', from: 'them', time: 'Yesterday' },
-    ],
-  },
-]
+import { initialConversations } from '../data/conversations.js'
 
 const keyboardRows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
 
@@ -47,6 +15,11 @@ function getKeyboardKey(character) {
   if (character === '.') return 'period'
   if (character === ',') return 'comma'
   return null
+}
+
+function getMessageTime(message) {
+  if (message.time) return message.time
+  return new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(new Date())
 }
 
 export default function MessengerApp({ onBack }) {
@@ -72,15 +45,14 @@ export default function MessengerApp({ onBack }) {
   useEffect(() => {
     if (!chatFlow) return undefined
 
-    if (chatFlow.phase === 'me' && typedMessage.length < chatFlow.message.length) {
+    if (chatFlow.phase === 'me' && typedMessage.length < chatFlow.message.text.length) {
       const timer = setTimeout(() => {
-        setTypedMessage(chatFlow.message.slice(0, typedMessage.length + 1))
+        setTypedMessage(chatFlow.message.text.slice(0, typedMessage.length + 1))
       }, 55)
       return () => clearTimeout(timer)
     }
 
     const timer = setTimeout(() => {
-      const time = new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(new Date())
       if (chatFlow.phase === 'me') {
         setChatFlow(current => current?.conversationId === chatFlow.conversationId
           ? { ...current, phase: 'sending' }
@@ -92,10 +64,10 @@ export default function MessengerApp({ onBack }) {
         setConversations(current => current.map(chat => chat.id === chatFlow.conversationId
           ? {
               ...chat,
-              preview: chatFlow.message,
-              time,
+              preview: chatFlow.message.text,
+              time: getMessageTime(chatFlow.message),
               messageIndex: chat.messageIndex + 1,
-              messages: [...chat.messages, { id: Date.now(), text: chatFlow.message, from: 'me', time }],
+              messages: [...chat.messages, { id: Date.now(), ...chatFlow.message, time: getMessageTime(chatFlow.message) }],
             }
           : chat))
         setChatFlow(current => current?.conversationId === chatFlow.conversationId
@@ -107,10 +79,10 @@ export default function MessengerApp({ onBack }) {
       setConversations(current => current.map(chat => chat.id === chatFlow.conversationId
         ? {
             ...chat,
-            preview: chatFlow.reply,
-            time,
+            preview: chatFlow.reply.text,
+            time: getMessageTime(chatFlow.reply),
             replyIndex: chat.replyIndex + 1,
-            messages: [...chat.messages, { id: Date.now(), text: chatFlow.reply, from: 'them', time }],
+            messages: [...chat.messages, { id: Date.now(), ...chatFlow.reply, time: getMessageTime(chatFlow.reply) }],
           }
         : chat))
       setChatFlow(null)
@@ -152,7 +124,7 @@ export default function MessengerApp({ onBack }) {
             <div className="message-bubble"><p>{message.text}</p><small>{message.time}</small></div>
           </div>)}
           {chatFlow?.conversationId === activeId && ['me', 'sending'].includes(chatFlow.phase) && <div className="message-row message-own" aria-label={chatFlow.phase === 'me' ? 'You are typing' : 'Your message was sent'}>
-            <div className="message-bubble"><p>{chatFlow.phase === 'me' ? 'Typing...' : chatFlow.message}</p></div>
+            <div className="message-bubble"><p>{chatFlow.phase === 'me' ? 'Typing...' : chatFlow.message.text}</p></div>
           </div>}
           {chatFlow?.conversationId === activeId && chatFlow.phase === 'them' && <div className="message-row typing-row" aria-label={`${activeConversation.name} is typing`}>
             <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>
@@ -161,7 +133,7 @@ export default function MessengerApp({ onBack }) {
         </div>
         <div className="message-composer">
           <button className="message-prompt" onClick={startReply} disabled={Boolean(chatFlow) || !hasMoreMessages} aria-label={!hasMoreMessages ? 'No more messages' : 'Tap to start a conversation'}>
-            <span>{chatFlow?.phase === 'me' ? `${typedMessage ? `: ${typedMessage}` : '...'}` : chatFlow?.phase === 'sending' ? 'Sending...' : chatFlow?.phase === 'them' ? 'They are typing...' : hasMoreMessages ? 'Tap here to write a message...' : 'No more messages'}</span>
+            <span>{chatFlow?.phase === 'me' ? `${typedMessage ? `${typedMessage}` : '...'}` : chatFlow?.phase === 'sending' ? 'Sending...' : chatFlow?.phase === 'them' ? 'They are typing...' : hasMoreMessages ? 'Tap here to write a message...' : 'No more messages'}</span>
             <Send size={16} />
           </button>
           {chatFlow?.phase === 'me' && <div className="phone-keyboard" aria-label="Phone keyboard typing animation">
