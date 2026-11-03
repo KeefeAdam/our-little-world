@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BatteryFull, Signal } from 'lucide-react'
 
-export default function StatusBar({ dark = false }) {
+export default function StatusBar({ dark = false, sticky = true }) {
   const [now, setNow] = useState(new Date())
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function StatusBar({ dark = false }) {
 
   const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
 
-  return <div className={`status-bar ${dark ? 'status-dark' : ''}`}>
+  return <div className={`status-bar ${dark ? 'status-dark' : ''} ${sticky ? '' : 'status-static'}`}>
     <span>{time}</span>
     <div className="status-icons"><Signal size={14} /><span className="wifi">⌁</span><BatteryFull size={17} /></div>
   </div>

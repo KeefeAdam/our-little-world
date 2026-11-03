@@ -32,7 +32,7 @@ export default function HomeScreen({ onOpen, onOpenNotification, found, unlocked
     setPasswordError(true)
   }
   return <div className="home-screen screen">
-    <StatusBar />
+    <StatusBar sticky={false} />
     {notificationVisible ? <div className="home-notification">
       <button className="home-notification-main" onClick={onOpenNotification}>
         <span className="home-notification-icon"><Bell size={16} /></span>
