@@ -66,7 +66,7 @@ export default function HomeScreen({ onOpen, onOpenNotification, found, unlocked
         <LockKeyhole size={25} />
         <span className="eyebrow">MYSTERY UNLOCKED</span>
         <h2>A little secret<br /><i>for you.</i></h2>
-        <p>Enter the password to open your letter and video.</p>
+        <p>Password: look for the hidden clues across the apps here.</p>
         <input ref={passwordInputRef} type="password" value={password} onChange={event => { setPassword(event.target.value); setPasswordError(false) }} placeholder="Type the password" autoComplete="off" aria-label="Mystery password" />
         {passwordError && <small className="mystery-password-error">That password isn't quite right.</small>}
         <button className="primary-button" type="submit">Open Mystery <Sparkles size={15} /></button>

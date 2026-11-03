@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Heart, Play, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Heart, Sparkles } from 'lucide-react'
 import { albums } from '../data.js'
 import AppHeader from '../components/AppHeader.jsx'
 import StatusBar from '../components/StatusBar.jsx'
@@ -7,22 +7,16 @@ import StatusBar from '../components/StatusBar.jsx'
 export default function GalleryApp({ onBack, onClue }) {
   const [albumId, setAlbumId] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(null)
-  const [showClip, setShowClip] = useState(false)
   const selected = albums.find(a => a.id === albumId)
   const photo = selected && photoIndex !== null ? selected.photos[photoIndex] : null
   return <div className="app-screen screen">
     <StatusBar dark />
     <AppHeader title={photo ? 'Memory' : selected ? selected.title : 'Gallery'} onBack={() => {
-      if (showClip) setShowClip(false)
-      else if (photo) setPhotoIndex(null)
+      if (photo) setPhotoIndex(null)
       else if (selected) setAlbumId(null)
       else onBack()
     }} subtitle="Our memories" />
-    {showClip ? <div className="media-view">
-      <div className="video-placeholder"><Play size={34} /><p>Our little preview</p><small>Add your preview video at <code>/media/anniversary-preview.mp4</code></small></div>
-      <video controls playsInline className="actual-video" src="/media/anniversary-preview.mp4" onError={(e) => { e.currentTarget.style.display = 'none' }} />
-      <p className="muted center">This is a placeholder until you add your own video file.</p>
-    </div> : photo ? <div className="photo-detail">
+    {photo ? <div className="photo-detail">
       <div className="photo-art large-art">
         {photo.src ? <img src={photo.src} alt={photo.title} /> : <Sparkles size={36} />}
         <span>{photo.symbol}</span>

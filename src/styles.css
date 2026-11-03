@@ -299,7 +299,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .text-link { display: inline-flex; align-items: center; gap: 5px; border: 0; padding: 12px 0 2px; color: #9b7840; background: none; font-size: 11px; font-weight: 600; }
 .eyebrow { display: block; color: #9c7b44; font-size: 9px; letter-spacing: .16em; }
 .photo-detail { padding: 24px 20px; text-align: center; }
-.large-art { height: 290px; border-radius: 18px; display: grid; place-items: center; position: relative; overflow: hidden; color: #92724c; background: linear-gradient(145deg, #d9c7b4, #b9c7c7 54%, #778ca2); }
+.large-art { aspect-ratio: 1; border-radius: 18px; display: grid; place-items: center; position: relative; overflow: hidden; color: #92724c; background: linear-gradient(145deg, #d9c7b4, #b9c7c7 54%, #778ca2); }
 .large-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .large-art > span { position: absolute; right: 24px; top: 22px; font-size: 24px; }
 .photo-nav { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: rgba(36, 51, 76, .72); transform: translateY(-50%); }

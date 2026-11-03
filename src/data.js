@@ -20,10 +20,20 @@ export const albums = [
   { id: 'terryanna', title: "Terryanna's House", date: 'Edited photos for Terry and Anna', photos: [
     { title: 'From Terry', caption: 'To cheer Anna up!', symbol: '♡', src: '/images/gallery/terryanna/1.png' },
     { title: 'Green Couple', caption: 'Terry and Anna together', symbol: '♡', src: '/images/gallery/terryanna/2.png' },
+    { title: 'Terryanna - Moodboard', caption: 'Moodboard for Terryanna (us)', symbol: '♡', src: '/images/gallery/terryanna/3.jpg' },
+    { title: 'Aley - Moodboard', caption: 'Moodboard for Aleyna', symbol: '♡', src: '/images/gallery/terryanna/4.jpg' },
+    { title: 'Orion - Moodboard', caption: 'Moodboard for Orion', symbol: '♡', src: '/images/gallery/terryanna/5.jpg' },
   ]},
   { id: 'chibis', title: 'Our Chibis', date: 'Our representative chibis', photos: [
-    { title: 'Orion', caption: 'All about Orion', symbol: '☾', src: '/images/gallery/chibi/1.png' },
-    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '☾', src: '/images/gallery/chibi/2.png' },
+    { title: 'Aleyna', caption: 'Chibi Birthday from Orion (1)', symbol: '☾', src: '/images/gallery/chibi/1.png' },
+    { title: 'Aleyna', caption: 'Chibi Birthday from Orion (2)', symbol: '☾', src: '/images/gallery/chibi/2.png' },
+    { title: 'Aleyna', caption: 'Chibi Birthday from Orion (3)', symbol: '☾', src: '/images/gallery/chibi/3.png' },
+    { title: 'Terryanna', caption: 'Terryanna Chibi piggyback', symbol: '☾', src: '/images/gallery/chibi/4.jpg' },
+    { title: 'Our Family', caption: 'Terryanna with Selfie', symbol: '☾', src: '/images/gallery/chibi/5.png' },
+    { title: 'Couple', caption: 'Chibi Terryanna when Orion asks Aleyna to be his girlfriend', symbol: '☾', src: '/images/gallery/chibi/6.jpg' },
+    { title: 'Couple', caption: 'Chibi Terryanna when Orion asks Aleyna to be his girlfriend, with our names!', symbol: '☾', src: '/images/gallery/chibi/7.png' },
+    { title: 'Orion', caption: 'Cute Bouquet Orion. Aleyna said Yes!', symbol: '☾', src: '/images/gallery/chibi/8.png' },
+    { title: 'Selfie', caption: 'Selfie emotes!', symbol: '☾', src: '/images/gallery/chibi/9.png' },
   ]},
   { id: 'favorites', title: 'Our Favorites', date: 'Selected memories', photos: [
     { title: 'One', caption: 'First favorite', symbol: '✧', src: '/images/gallery/favorites/1.png' },

@@ -3,10 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import StatusBar from './StatusBar.jsx'
 
 const PAIRS = [
-  { id: 'moon', question: 'The one that lights our quiet nights', answer: 'Moon' },
-  { id: 'home', question: 'The place that feels like us', answer: 'Home' },
-  { id: 'song', question: 'Something that keeps our memories moving', answer: 'Song' },
-  { id: 'love', question: 'The little thing that started it all', answer: 'Love' },
+  { id: 'home', question: 'What is the name of the house we built together?', answer: 'Terryanna' },
+  { id: 'kiss', question: 'When was our first kiss?', answer: 'July 27, 2026' },
+  { id: 'game', question: 'Which Roblox game do we often play together?', answer: 'Raft 101 Survival' },
+  { id: 'song', question: 'What is our national anthem?', answer: 'butterflies (feat. TAEHYUN of TOMORROW X TOGETHER & Kim Chaewon of LE SSERAFIM)' },
+  { id: 'love', question: 'Aleyna is.....', answer: "Orion's baby ♡" },
 ]
 const TIME_LIMIT = 60
 const MAX_WRONG_ATTEMPTS = 2
