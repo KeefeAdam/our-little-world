@@ -86,8 +86,30 @@ export const playlists = [
 ]
 
 export const notes = [
-  { id: 'welcome', title: 'A little note for you', date: 'Our first month', body: 'Dear Orion,\\n\\nThis little place is made for the memories we have already made, and the ones we have yet to make.\\n\\nReplace this sample with your own words.\\n\\nLove, Aleyna ♡', clue: false },
-  { id: 'clue-one', title: 'Something to remember', date: 'Saved note', body: 'Some dates hold more than a number. Look through Our Days to find the next piece.\\n\\nKeep this piece close: er.', clue: true },
+  { id: 'orion-card', title: 'Carrd from Orion', body: 'Something from Orion\'s heart. Check it in this link:', link: 'https://terryanna.carrd.com/#terryanna' },
+  { id: 'date-ideas', title: 'Date Ideas', items: [
+    'Dengerin Spotify bareng',
+    'Makan Fried Chicken bareng',
+    'Makan tiramisu cake bareng',
+    'Lakuin Diamond Painting bareng',
+    'Nonton Barbie (baru pengen hehe)',
+  ] },
+  { id: 'our-future', title: 'Our Future', body: 'I hope we can build a future together, filled with love, laughter, and endless adventures. I want to be there for you through thick and thin, supporting each other in every way possible. Let\'s create a life that we both dream of, hand in hand, heart to heart.' },
+  { id: 'about-orion', title: 'About Orion', items: [
+    'Orion loves coffee',
+    'Orion loves the color Blue',
+    'Orion loves mie goreng',
+  ] },
+  { id: 'clue-one', title: 'Clue for Mystery App', body: 'Keep this piece close: er. Other clues are hidden throughout The Apps here.', clue: true },
+  { id: 'things-to-watch', title: 'Things to Watch Together', items: [
+    'Barbie (2023)',
+    'The Notebook (2004)',
+    'LENIVERSE',
+  ] },
+  { id: 'things-to-play', title: 'Things to Play Together', items: [
+    'Roblox: Raft 101 Survival',
+    'Roblox: Typical Ramen',
+  ] },
 ]
 
 export const finalLetter = `To My Favorite Person,

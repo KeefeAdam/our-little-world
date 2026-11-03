@@ -364,6 +364,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .note-detail { padding: 13px 4px; }
 .note-detail h3 { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 500; line-height: 1.2; }
 .note-detail p { white-space: pre-line; color: #646a76; font-family: 'Playfair Display', serif; font-size: 14px; line-height: 1.9; }
+.note-detail ol { margin: 0; padding-left: 24px; color: #646a76; font-family: 'Playfair Display', serif; font-size: 14px; line-height: 1.9; text-align: left; }
+.note-detail li { padding-left: 5px; }
+.note-detail a { color: #9c7b44; text-decoration: underline; text-underline-offset: 2px; }
 .mystery-content { padding: 25px 21px; text-align: center; }
 .mystery-emblem { width: 94px; height: 94px; margin: 14px auto 24px; display: grid; place-items: center; border-radius: 30px; color: #c5a15e; background: linear-gradient(145deg, #273650, #121b2b); box-shadow: 0 12px 28px #1d2b441f; }
 .mystery-emblem.is-open { color: #d8b56f; background: linear-gradient(145deg, #263951, #9c7844); }
