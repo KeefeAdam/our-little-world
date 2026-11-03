@@ -55,12 +55,13 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .global-audio { display: none; }
 .phone-caption { text-align: center; margin-top: 18px; color: #8d96a9; font-size: 10px; letter-spacing: .22em; }
 .phone-caption span { color: var(--gold); margin-left: 6px; }
-.screen { position: absolute; inset: 0; overflow: auto; scrollbar-width: none; color: var(--ivory); background: #101827; }
+.screen { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; scroll-padding-top: 48px; scrollbar-width: none; color: var(--ivory); background: #101827; -webkit-overflow-scrolling: touch; }
 .screen::-webkit-scrollbar { display: none; }
 .lock-screen, .passcode-screen, .home-screen { background: radial-gradient(ellipse at 48% 28%, rgba(56,76,109,.64), transparent 48%), linear-gradient(155deg, #17243b 0%, #101827 65%, #1b2638 100%); }
 .lock-screen::after, .home-screen::after { content: ''; pointer-events: none; position: absolute; inset: 0; opacity: .3; background-image: radial-gradient(#f3d99f .7px, transparent 1px), radial-gradient(#f3f0e8 .5px, transparent .8px); background-size: 61px 61px, 37px 37px; background-position: 0 0, 18px 23px; }
-.status-bar { position: relative; z-index: 4; height: 48px; padding: 16px 25px 0; display: flex; justify-content: space-between; align-items: flex-start; color: #f3f0e8; font-size: 12px; font-weight: 700; }
+.status-bar { position: sticky; top: 0; z-index: 4; height: 48px; flex-shrink: 0; padding: 16px 25px 0; display: flex; justify-content: space-between; align-items: flex-start; color: #f3f0e8; background: rgba(16,24,39,.94); backdrop-filter: blur(10px); font-size: 12px; font-weight: 700; }
 .status-dark { color: #1b2434; }
+.app-screen .status-bar { background: rgba(244,241,233,.96); }
 .status-icons { display: flex; align-items: center; gap: 5px; }
 .wifi { font-size: 19px; line-height: 10px; transform: rotate(90deg); }
 .lock-date { text-align: center; position: relative; z-index: 1; margin-top: 44px; font-size: 13px; color: #e3e6ec; }
