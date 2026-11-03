@@ -46,8 +46,11 @@ export const albums = [
 ]
 
 export const calendarEvents = [
-  { date: '2026-10-05', title: 'A little milestone', note: 'Replace with a date that matters to you both.', clue: 'st' },
-  { date: '2026-10-09', title: 'Our first date', note: 'Add a memory, a photo, or a small message.' },
+  { date: '2026-07-27', title: 'First Kiss', note: 'Day 1 Kissing, Soobin x Beomgyu.', clue: 'st' },
+  { date: '2026-08-04', title: "Terryanna's First Meeting", note: 'Knock knock? Do you wanna build a snowman?' },
+  { date: '2026-08-05', title: "Terryanna's House", note: 'Orion is the head and Aleyna is the house inspector' },
+  { date: '2026-09-04', title: "Something from Orion's heart", note: 'Orion gave Aleyna a carrd' },
+  { date: '2026-10-05', title: 'Becoming a Couple', note: 'I am yours, you are mine.' },
   { date: '2026-11-05', title: 'One month of us', note: 'Our first month anniversary.' },
 ]
 
@@ -57,7 +60,14 @@ export const playlists = [
     title: 'Our Little Soundtrack',
     description: 'The songs that tell our story.',
     tracks: [
-      { title: 'Butterflies', artist: 'JVKE (ft. Taehyun and Chaewon)', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion? A little piece is hidden in the story: la.' },
+      { title: 'Butterflies', artist: 'JVKE (ft. Taehyun and Chaewon)', src: '/audio/butterflies.mp3', note: 'Our anthem. A little piece is hidden in the story: la.' },
+      { title: 'Kita usahakan rumah itu', artist: 'Sal Priadi', src: '/audio/kita-usahakan-rumah-itu.mp3', note: "Let's build a home together." },
+      { title: 'Cintanya aku', artist: 'Tiara Andini, Arsy Widianto', src: '/audio/cintanya-aku.mp3', note: "You are the love of my life." },
+      { title: '10,000 hours (With Justin Bieber)', artist: 'Dan + Shay', src: '/audio/10000-hours.mp3', note: "I want to spend forever with you." },
+      { title: 'They Dont Know About Us', artist: 'One Direction', src: '/audio/they-dont-know-about-us.mp3', note: "We have something special." },
+      { title: 'Little Bit Better', artist: 'Caleb Hearn, ROSIE', src: '/audio/little-bit-better.mp3', note: "We're getting better together." },
+      { title: 'Green Tea & Honey', artist: 'Dane Amar, Montemayor', src: '/audio/green-tea-honey.mp3', note: "A sweet and simple love." },
+      { title: 'Awal Kisah Selamanya', artist: 'Raisa, Bersena Bestandhi', src: '/audio/awal-kisah-selamanya.mp3', note: "The beginning of our eternal story." },
     ],
   },
   {
@@ -65,7 +75,12 @@ export const playlists = [
     title: 'Songs That Feel Like Us',
     description: 'A few songs to keep close.',
     tracks: [
-      { title: 'Take My Half', artist: 'Choi Beomgyu', src: '/audio/take-my-half.mp3', note: 'Add the story behind this song.' },
+      { title: 'Take My Half', artist: 'Choi Beomgyu', src: '/audio/take-my-half.mp3', note: 'Orion, you can take my half. It\'s yours.' },
+      { title: 'Scars', artist: 'Keenan Te', src: '/audio/scars.mp3', note: 'Loving you is worth it all.' },
+      { title: '1000x', artist: 'Ghea Indrawari', src: '/audio/1000x.mp3', note: 'So lucky to be loved by you.' },
+      { title: 'Jatuh sejatuh-jatuhnya', artist: 'Anneth', src: '/audio/jatuh-sejatuh-jatuhnya.mp3', note: 'I fall for you hard' },
+      { title: 'Until I Found You', artist: 'Stephen Sanchez, Em Beihold', src: '/audio/until-i-found-you.mp3', note: 'Finally i found you' },
+      { title: 'WDYS', artist: 'yedira, asheu', src: '/audio/wdys.mp3', note: 'Let\'s meet tonight. What do you say?' },
     ],
   },
 ]
