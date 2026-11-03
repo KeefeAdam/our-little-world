@@ -156,7 +156,7 @@ export default function MessengerApp({ onBack }) {
       <div className="messenger-content">
         <div className="messenger-welcome">
           <span className="messenger-welcome-icon"><MessageCircle size={21} /></span>
-          <div><h3>Our conversations</h3><p>Little messages, just between us.</p></div>
+          <div><h3>Our conversations</h3><p>Little messages, just between us.</p><span className="mystery-fragment" aria-label="Mystery password fragment">{conversations.find(chat => chat.clue)?.clue}</span></div>
         </div>
         <p className="messenger-section-label">MESSAGES</p>
         <div className="conversation-list">

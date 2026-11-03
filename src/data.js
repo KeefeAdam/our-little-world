@@ -1,5 +1,5 @@
-export const DEMO_PASSCODE = '1902' // Temporary demo code; replace with a meaningful number.
-export const MYSTERY_PASSWORD = 'Aleyna99'
+export const DEMO_PASSCODE = '0408' // Temporary demo code; replace with a meaningful number.
+export const MYSTERY_PASSWORD = 'everlasting'
 
 export const apps = [
   { id: 'gallery', label: 'Gallery', icon: '▧', tone: 'rose' },
@@ -19,20 +19,24 @@ export const albums = [
   ]},
   { id: 'terryanna', title: "Terryanna's House", date: 'Edited photos for Terry and Anna', photos: [
     { title: 'From Terry', caption: 'To cheer Anna up!', symbol: '♡', src: '/images/gallery/terryanna/1.png' },
-    { title: 'Green Couple', caption: 'Terry and Anna together', symbol: '✧', src: '/images/gallery/terryanna/2.png' },
+    { title: 'Green Couple', caption: 'Terry and Anna together', symbol: '♡', src: '/images/gallery/terryanna/2.png' },
   ]},
   { id: 'chibis', title: 'Our Chibis', date: 'Our representative chibis', photos: [
     { title: 'Orion', caption: 'All about Orion', symbol: '☾', src: '/images/gallery/chibi/1.png' },
-    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '✧', src: '/images/gallery/chibi/2.png' },
+    { title: 'Aleyna', caption: 'All about Aleyna', symbol: '☾', src: '/images/gallery/chibi/2.png' },
   ]},
   { id: 'favorites', title: 'Our Favorites', date: 'Selected memories', photos: [
-    { title: 'One', caption: 'First favorite', symbol: '☾', src: '/images/gallery/favorites/1.png' },
+    { title: 'One', caption: 'First favorite', symbol: '✧', src: '/images/gallery/favorites/1.png' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
+    { title: 'Two', caption: 'Second favorite', clue: 'ev', symbol: '✧', src: '/images/gallery/favorites/2.png' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
     { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
   ]},
 ]
 
 export const calendarEvents = [
-  { date: '2026-10-05', title: 'A little milestone', note: 'Replace with a date that matters to you both.' },
+  { date: '2026-10-05', title: 'A little milestone', note: 'Replace with a date that matters to you both.', clue: 'st' },
   { date: '2026-10-09', title: 'Our first date', note: 'Add a memory, a photo, or a small message.' },
   { date: '2026-11-05', title: 'One month of us', note: 'Our first month anniversary.' },
 ]
@@ -43,7 +47,7 @@ export const playlists = [
     title: 'Our Little Soundtrack',
     description: 'The songs that tell our story.',
     tracks: [
-      { title: 'Butterflies', artist: 'JVKE (ft. Taehyun and Chaewon)', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion?' },
+      { title: 'Butterflies', artist: 'JVKE (ft. Taehyun and Chaewon)', src: '/audio/butterflies.mp3', note: 'Why does this song remind you of Orion? A little piece is hidden in the story: la.' },
     ],
   },
   {
@@ -58,7 +62,7 @@ export const playlists = [
 
 export const notes = [
   { id: 'welcome', title: 'A little note for you', date: 'Our first month', body: 'Dear Orion,\\n\\nThis little place is made for the memories we have already made, and the ones we have yet to make.\\n\\nReplace this sample with your own words.\\n\\nLove, Aleyna ♡', clue: false },
-  { id: 'clue-one', title: 'Something to remember', date: 'Saved note', body: 'Some dates hold more than a number. Look through Our Days to find the next piece.', clue: true },
+  { id: 'clue-one', title: 'Something to remember', date: 'Saved note', body: 'Some dates hold more than a number. Look through Our Days to find the next piece.\\n\\nKeep this piece close: er.', clue: true },
 ]
 
 export const finalLetter = `Dear Orion,

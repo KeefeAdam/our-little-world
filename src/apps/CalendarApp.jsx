@@ -26,7 +26,7 @@ export default function CalendarApp({ onBack, onClue }) {
           if (e) setSelected(e)
         }}>{day}{active && <i />}</button>
       })}</div>
-      <div className="event-card"><span className="event-date">{selected.date}</span><h3>{selected.title}</h3><p>{selected.note}</p><button className="text-link" onClick={() => onClue('calendar')}>Keep this day <Heart size={14} /></button></div>
+      <div className="event-card"><span className="event-date">{selected.date}</span><h3>{selected.title}</h3><p>{selected.note}</p>{selected.clue && <span className="mystery-fragment" aria-label="Mystery password fragment">{selected.clue}</span>}</div>
     </div>
   </div>
 }

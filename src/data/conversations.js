@@ -4,6 +4,7 @@ export const initialConversations = [
     name: 'Orion',
     initials: 'O',
     preview: 'Can’t wait to see you ♡',
+    clue: 'ing',
     time: '9:41',
     messagesToSend: [
       { text: 'What are you doing right now? ♡', from: 'me', time: '9:42' },

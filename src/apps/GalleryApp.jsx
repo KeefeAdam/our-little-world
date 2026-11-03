@@ -43,7 +43,7 @@ export default function GalleryApp({ onBack, onClue }) {
           <ChevronRight size={22} />
         </button>
       </div>
-      <h3>{photo.title}</h3><p>{photo.caption}</p>
+      <h3>{photo.title}</h3><p>{photo.caption}{photo.clue && <span className="mystery-fragment" aria-label="Mystery password fragment">{photo.clue}</span>}</p>
       {/*<button className="secondary-button" onClick={() => { onClue('gallery'); setPhoto(null); }}>Keep this memory <Heart size={15} /></button> */}
     </div> : selected ? <div className="app-content">
       <p className="eyebrow">{selected.date}</p>
@@ -66,7 +66,6 @@ export default function GalleryApp({ onBack, onClue }) {
         <div className={`album-cover art-${i}`}><span>{i === 0 ? '♡' : '✦'}</span></div>
         <span className="album-meta"><b>{album.title}</b><small>{album.photos.length} memories · {album.date}</small></span><ChevronRight size={18} />
       </button>)}
-      <button className="feature-video" onClick={() => setShowClip(true)}><span className="play-circle"><Play size={16} fill="currentColor" /></span><span><b>A little video for you</b><small>Watch our anniversary preview</small></span><ChevronRight size={17} /></button>
     </div>}
   </div>
 }
