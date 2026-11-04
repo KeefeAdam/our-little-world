@@ -36,12 +36,12 @@ export const albums = [
     { title: 'Selfie', caption: 'Selfie emotes!', symbol: '☾', src: '/images/gallery/chibi/9.png' },
   ]},
   { id: 'favorites', title: 'Our Favorites', date: 'Selected memories', photos: [
-    { title: 'One', caption: 'First favorite', symbol: '✧', src: '/images/gallery/favorites/1.png' },
-    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
-    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
-    { title: 'Two', caption: 'Second favorite', clue: 'ev', symbol: '✧', src: '/images/gallery/favorites/2.png' },
-    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
-    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.png' },
+    { title: 'One', caption: 'First favorite', symbol: '✧', src: '/images/gallery/favorites/1.jpg' },
+    { title: 'Two', caption: 'Second favorite', symbol: '✧', src: '/images/gallery/favorites/2.jpg' },
+    { title: 'Three', caption: 'Third favorite', symbol: '✧', src: '/images/gallery/favorites/3.jpg' },
+    { title: 'Four', caption: 'Fourth favorite', clue: 'ev', symbol: '✧', src: '/images/gallery/favorites/4.jpg' },
+    { title: 'Five', caption: 'Fifth favorite', symbol: '✧', src: '/images/gallery/favorites/5.jpg' },
+    { title: 'Six', caption: 'Sixth favorite', symbol: '✧', src: '/images/gallery/favorites/6.jpg' },
   ]},
 ]
 
