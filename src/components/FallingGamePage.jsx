@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import StatusBar from './StatusBar.jsx'
 
 const GAME_TIME = 640
-const TARGET_SCORE = 10
+const TARGET_SCORE = 1
 const MAX_MISSED = 100
 
 export default function FallingGamePage({ onBack, onClue }) {
