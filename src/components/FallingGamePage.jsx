@@ -2,9 +2,9 @@ import { ArrowLeft, ChevronLeft, ChevronRight, RotateCcw, Trophy } from 'lucide-
 import { useEffect, useRef, useState } from 'react'
 import StatusBar from './StatusBar.jsx'
 
-const GAME_TIME = 640
-const TARGET_SCORE = 1
-const MAX_MISSED = 100
+const GAME_TIME = 120
+const TARGET_SCORE = 10
+const MAX_MISSED = 10
 
 export default function FallingGamePage({ onBack, onClue }) {
   const boardRef = useRef(null)
