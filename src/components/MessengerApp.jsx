@@ -22,6 +22,20 @@ function getMessageTime(message) {
   return new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit' }).format(new Date())
 }
 
+function getMessageTimestamp(message, fallbackDate) {
+  return new Date(`${message.date || fallbackDate}T${message.time || '00:00'}`).getTime()
+}
+
+function formatChatDate(date) {
+  return new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${date}T00:00`))
+}
+
+function ProfileImage({ conversation, small = false }) {
+  return <span className={`chat-avatar ${small ? 'chat-avatar-small' : ''} ${conversation.id === 'orion' ? 'avatar-orion' : ''}`}>
+    <img src={conversation.profileImage} alt={`${conversation.name} profile`} />
+  </span>
+}
+
 export default function MessengerApp({ onBack }) {
   const [conversations, setConversations] = useState(initialConversations)
   const [activeId, setActiveId] = useState(null)
@@ -67,7 +81,7 @@ export default function MessengerApp({ onBack }) {
               preview: chatFlow.message.text,
               time: getMessageTime(chatFlow.message),
               messageIndex: chat.messageIndex + 1,
-              messages: [...chat.messages, { id: Date.now(), ...chatFlow.message, time: getMessageTime(chatFlow.message) }],
+              messages: [...chat.messages, { id: Date.now(), ...chatFlow.message, date: chatFlow.message.date || chat.date, time: getMessageTime(chatFlow.message) }],
             }
           : chat))
         setChatFlow(current => current?.conversationId === chatFlow.conversationId
@@ -82,7 +96,7 @@ export default function MessengerApp({ onBack }) {
             preview: chatFlow.reply.text,
             time: getMessageTime(chatFlow.reply),
             replyIndex: chat.replyIndex + 1,
-            messages: [...chat.messages, { id: Date.now(), ...chatFlow.reply, time: getMessageTime(chatFlow.reply) }],
+            messages: [...chat.messages, { id: Date.now(), ...chatFlow.reply, date: chatFlow.reply.date || chat.date, time: getMessageTime(chatFlow.reply) }],
           }
         : chat))
       setChatFlow(null)
@@ -115,19 +129,24 @@ export default function MessengerApp({ onBack }) {
   return <div className="app-screen screen messenger-screen">
     <StatusBar dark />
     {activeConversation ? <>
-      <AppHeader title={activeConversation.name} onBack={back} subtitle="Our little chat" />
+      <AppHeader title={activeConversation.name} onBack={back} subtitle="Our little chat" avatar={<ProfileImage conversation={activeConversation} small />} />
       <div className="messenger-thread">
-        <div className="chat-date">TODAY</div>
         <div className="message-list" ref={messageListRef}>
-          {activeConversation.messages.map(message => <div key={message.id} className={`message-row ${message.from === 'me' ? 'message-own' : ''}`}>
-            {message.from === 'them' && <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>}
-            <div className="message-bubble"><p>{message.text}</p><small>{message.time}</small></div>
-          </div>)}
+          {activeConversation.messages
+            .slice()
+            .sort((a, b) => getMessageTimestamp(a, activeConversation.date) - getMessageTimestamp(b, activeConversation.date))
+            .map((message, index, messages) => <div key={message.id} className={`message-group ${message.from === 'me' ? 'message-group-own' : ''}`}>
+              {(index === 0 || message.date !== messages[index - 1].date) && <div className="chat-date">{formatChatDate(message.date || activeConversation.date)}</div>}
+              <div className={`message-row ${message.from === 'me' ? 'message-own' : ''}`}>
+                {message.from === 'them' && <ProfileImage conversation={activeConversation} small />}
+                <div className="message-bubble"><p>{message.text}</p><small>{message.time}</small></div>
+              </div>
+            </div>)}
           {chatFlow?.conversationId === activeId && ['me', 'sending'].includes(chatFlow.phase) && <div className="message-row message-own" aria-label={chatFlow.phase === 'me' ? 'You are typing' : 'Your message was sent'}>
             <div className="message-bubble"><p>{chatFlow.phase === 'me' ? 'Typing...' : chatFlow.message.text}</p></div>
           </div>}
           {chatFlow?.conversationId === activeId && chatFlow.phase === 'them' && <div className="message-row typing-row" aria-label={`${activeConversation.name} is typing`}>
-            <span className="chat-avatar chat-avatar-small">{activeConversation.initials}</span>
+            <ProfileImage conversation={activeConversation} small />
             <div className="typing-bubble"><span /><span /><span /></div>
           </div>}
         </div>
@@ -160,8 +179,11 @@ export default function MessengerApp({ onBack }) {
         </div>
         <p className="messenger-section-label">MESSAGES</p>
         <div className="conversation-list">
-          {conversations.map(chat => <button key={chat.id} className="conversation-row" onClick={() => setActiveId(chat.id)}>
-            <span className={`chat-avatar ${chat.id === 'orion' ? 'avatar-orion' : ''}`}>{chat.initials}</span>
+          {conversations
+            .slice()
+            .sort((a, b) => getMessageTimestamp(b, b.date) - getMessageTimestamp(a, a.date))
+            .map(chat => <button key={chat.id} className="conversation-row" onClick={() => setActiveId(chat.id)}>
+            <ProfileImage conversation={chat} />
             <span className="conversation-info"><b>{chat.name}</b><small>{chat.preview}</small></span>
             <span className="conversation-time">{chat.time}</span>
           </button>)}
