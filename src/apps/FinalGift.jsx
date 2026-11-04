@@ -16,8 +16,8 @@ function formatLetterPage(text) {
 export default function FinalGift({ onBack }) {
   const letterPages = finalLetter.split(/\n{2,}/).filter(Boolean)
   const videos = [
-    { src: '/videos/fromaley.mp4', title: 'From a little memory', orientation: 'landscape' },
-    { src: '/videos/our-video.mp4', title: 'Another little surprise', orientation: 'portrait' },
+    { src: '/videos/fromaley.mp4', title: 'About my feeling for you', orientation: 'landscape' },
+    { src: '/videos/our-video.mp4', title: 'Our Story', orientation: 'portrait' },
   ]
   const [videoIndex, setVideoIndex] = useState(0)
   const [page, setPage] = useState(0)
