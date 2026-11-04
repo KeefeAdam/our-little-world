@@ -5,7 +5,7 @@ import StatusBar from './StatusBar.jsx'
 
 const MAZE_WIDTH = 31
 const MAZE_HEIGHT = 21
-const TIME_LIMIT = 60
+const TIME_LIMIT = 640
 const STEP_LIMIT = 180
 const START = { x: -1, y: 1 }
 const EXIT = { x: MAZE_WIDTH - 1, y: MAZE_HEIGHT - 2 }
