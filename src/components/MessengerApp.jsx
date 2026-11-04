@@ -44,8 +44,7 @@ export default function MessengerApp({ onBack }) {
   const messageListRef = useRef(null)
   const activeConversation = conversations.find(chat => chat.id === activeId)
   const hasMoreMessages = activeConversation
-    ? activeConversation.messageIndex < activeConversation.messagesToSend.length &&
-      activeConversation.replyIndex < activeConversation.replies.length
+    ? activeConversation.messageIndex < activeConversation.messagesToSend.length
     : false
   const pressedKey = chatFlow?.phase === 'me'
     ? getKeyboardKey(chatFlow.message[typedMessage.length])
@@ -84,9 +83,14 @@ export default function MessengerApp({ onBack }) {
               messages: [...chat.messages, { id: Date.now(), ...chatFlow.message, date: chatFlow.message.date || chat.date, time: getMessageTime(chatFlow.message) }],
             }
           : chat))
-        setChatFlow(current => current?.conversationId === chatFlow.conversationId
-          ? { ...current, phase: 'them' }
-          : current)
+        if (chatFlow.reply) {
+          setChatFlow(current => current?.conversationId === chatFlow.conversationId
+            ? { ...current, phase: 'them' }
+            : current)
+        } else {
+          setChatFlow(null)
+          setTypedMessage('')
+        }
         return
       }
 
@@ -112,7 +116,12 @@ export default function MessengerApp({ onBack }) {
       conversationId: activeConversation.id,
       phase: 'me',
       message: activeConversation.messagesToSend[activeConversation.messageIndex],
-      reply: activeConversation.replies[activeConversation.replyIndex],
+      reply: activeConversation.messagesToSend[activeConversation.messageIndex].replyIndex === null
+        ? null
+        : activeConversation.replies[
+            activeConversation.messagesToSend[activeConversation.messageIndex].replyIndex
+              ?? activeConversation.replyIndex
+          ],
     })
   }
 
@@ -188,7 +197,6 @@ export default function MessengerApp({ onBack }) {
             <span className="conversation-time">{chat.time}</span>
           </button>)}
         </div>
-        <p className="messenger-demo-note">Tap the message box to see a sample reply. Chats are only a demo.</p>
       </div>
     </>}
   </div>

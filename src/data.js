@@ -23,6 +23,9 @@ export const albums = [
     { title: 'Terryanna - Moodboard', caption: 'Moodboard for Terryanna (us)', symbol: '♡', src: '/images/gallery/terryanna/3.jpg' },
     { title: 'Aley - Moodboard', caption: 'Moodboard for Aleyna', symbol: '♡', src: '/images/gallery/terryanna/4.jpg' },
     { title: 'Orion - Moodboard', caption: 'Moodboard for Orion', symbol: '♡', src: '/images/gallery/terryanna/5.jpg' },
+    { title: 'Editan Anna', caption: 'Terryanna as Couple', symbol: '♡', src: '/images/gallery/terryanna/6.png' },
+    { title: 'Terryanna Couple', caption: 'We are having a date!', symbol: '♡', src: '/images/gallery/terryanna/7.jpg' },
+    { title: 'Terryanna Couple', caption: 'Walking together', symbol: '♡', src: '/images/gallery/terryanna/8.jpg' },
   ]},
   { id: 'chibis', title: 'Our Chibis', date: 'Our representative chibis', photos: [
     { title: 'Aleyna', caption: 'Chibi Birthday from Orion (1)', symbol: '☾', src: '/images/gallery/chibi/1.png' },
